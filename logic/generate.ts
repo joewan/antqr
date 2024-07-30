@@ -370,6 +370,11 @@ export async function generateQRCode(outCanvas: HTMLCanvasElement, state: QRCode
     if (isIgnored)
       continue
 
+    // Check if the pixel is within the margin boundaries
+    if (x < marginLeft || y < marginTop || x >= qr.size + marginRight || y >=qr.size  + marginBottom) {
+      continue
+    }
+
     let _pixelStyle = pixelStyle
 
     const opacity = isBorder ? getBorderOpacity(x, y) : 1
